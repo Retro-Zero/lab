@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CKEditorController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ExperimentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+
+Route::get('/experiment/{id}', [ExperimentController::class, 'show']);
+
+Route::get('/editor', [CKEditorController::class, 'index']);
+
+Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('upload');
