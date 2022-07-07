@@ -8,9 +8,9 @@ use App\Http\Controllers\PDateController;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $latest_experiments = DB::table('experiments')->latest()->take(3)->get();
-        return view('home', ['latest_experiments' => $latest_experiments]);
+        return view('home', ['latest_experiments' => $latest_experiments, 'request' => $request]);
     }
 }
